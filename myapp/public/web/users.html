@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>傲世群英传</title>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="item in list">
+                <span>{{item.name}}==========</span>
+                <span>{{item.password}}</span>
+            </li>
+        </ul>
+    </div>
+
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript" src="js/axios.min.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                list: []
+            },
+            mounted() {
+                this.getList()
+            },
+            methods: {
+                getList() {
+                    console.log(111111111)
+                    axios.get('/users/all').then(res => {
+                        console.log(res.data)
+                        this.list = res.data
+                    }).catch(error => {
+                        console.log(error)
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
